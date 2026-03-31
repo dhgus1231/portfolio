@@ -12,14 +12,14 @@
 
 body {
   font-family: 'Noto Sans KR', sans-serif;
-  background-color: #f8fafc;
+  background-color: #e2e8f0;
   color: #1e293b;
 }
 
 @media print {
   @page {
-    size: A4;
-    margin: 10mm 12mm;
+    size: A4 landscape;
+    margin: 8mm 10mm;
   }
 
   * {
@@ -37,57 +37,21 @@ body {
     display: none !important;
   }
 
-  /* 섹션 여백 최소화 */
-  section {
-    padding: 0.6rem 1.2rem !important;
-    border-bottom: 1px solid #e2e8f0;
+  /* 각 페이지 구분 */
+  .print-page {
+    break-after: page;
+    page-break-after: always;
   }
 
-  section h2 {
-    font-size: 11pt !important;
-    margin-bottom: 0.4rem !important;
-  }
-
-  /* 페이지 구조:
-     1p: Hero(1) + Skills(2)
-     2p: Projects(3)
-     3p: Troubleshooting(4) 전반
-     4p: Troubleshooting(4) 후반
-     5p: Experience(5) + EducationCerts(6)
-  */
-  section:nth-of-type(3),
-  section:nth-of-type(4),
-  section:nth-of-type(5) {
+  /* Troubleshooting 두 번째 그룹: 새 페이지 */
+  .print-page-break {
     break-before: page !important;
     page-break-before: always !important;
-  }
-
-  /* Hero 흰 배경 강제 */
-  section:first-of-type {
-    background: white !important;
-    color: #1e293b !important;
-    border-bottom: 2px solid #334155 !important;
-  }
-  section:first-of-type * {
-    color: inherit !important;
-  }
-  section:first-of-type h1 {
-    color: #0f172a !important;
-    font-size: 18pt !important;
-  }
-  section:first-of-type a {
-    color: #334155 !important;
   }
 
   /* 카드 잘림 방지 */
   .break-inside-avoid {
     break-inside: avoid !important;
     page-break-inside: avoid !important;
-  }
-
-  /* Troubleshooting 5번째 카드 앞 페이지 나누기 */
-  .print-page-break {
-    break-before: page !important;
-    page-break-before: always !important;
   }
 }
