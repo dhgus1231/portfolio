@@ -13,7 +13,7 @@ export default function Troubleshooting() {
         <p className="text-sm text-slate-500 mb-6">문제를 어떻게 정의하고 해결했는지에 대한 기록입니다.</p>
         <div className="flex flex-col gap-5">
           {troubleshooting.map((item, i) => (
-            <div key={i} className="bg-white border border-slate-200 rounded-xl overflow-hidden print:rounded-lg">
+            <div key={i} className="bg-white border border-slate-200 rounded-xl overflow-hidden print:rounded-lg break-inside-avoid">
               {/* Header */}
               <div className="flex items-start justify-between gap-3 px-6 py-4 bg-slate-50 border-b border-slate-200">
                 <div className="flex items-center gap-2 flex-wrap">

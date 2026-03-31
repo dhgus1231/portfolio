@@ -9,7 +9,7 @@ export default function Projects() {
           {profile.projects.map((project) => (
             <div
               key={project.title}
-              className={`rounded-xl border overflow-hidden print:rounded-lg ${
+              className={`rounded-xl border overflow-hidden print:rounded-lg break-inside-avoid ${
                 project.highlight ? 'border-blue-200' : 'border-slate-200'
               }`}
             >
