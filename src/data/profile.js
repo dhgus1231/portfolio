@@ -84,8 +84,13 @@ export const profile = {
         'Docker Compose로 전체 인프라 컨테이너화',
         '프론트엔드 개발자 이탈 후 프론트엔드 직접 구축',
       ],
-      tags: ['Java', 'Spring', 'Kafka', 'ClickHouse', 'Docker', 'Jira', 'UWB'],
+      tags: ['Java', 'Spring', 'Kafka', 'ClickHouse', 'Docker', 'Jira', 'UWB', 'React Native'],
       highlight: false,
+      screenshots: [
+        { src: '/images/epts/screen1.png', caption: '경기 실시간 현황' },
+        { src: '/images/epts/screen2.png', caption: '포지션별 분석 레이더' },
+        { src: '/images/epts/screen3.png', caption: '주간 목표 & 랭킹' },
+      ],
     },
   ],
 

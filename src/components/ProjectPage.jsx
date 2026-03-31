@@ -144,8 +144,29 @@ export default function ProjectPage({ projectKey }) {
             </div>
           )}
         </div>
-
       </div>
+
+      {/* ── Screenshots ── */}
+      {project.screenshots && (
+        <div className="mt-6 print:mt-4">
+          <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">App Screenshots</p>
+          <div className="flex gap-4 print:gap-3">
+            {project.screenshots.map((shot, i) => (
+              <div key={i} className="flex flex-col items-center gap-1.5 flex-1">
+                <div className="rounded-2xl print:rounded-xl overflow-hidden border border-slate-200 shadow-md print:shadow-none w-full">
+                  <img
+                    src={shot.src}
+                    alt={shot.caption}
+                    className="w-full object-cover"
+                  />
+                </div>
+                <p className="text-xs text-slate-500 text-center">{shot.caption}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
     </div>
   );
 }
