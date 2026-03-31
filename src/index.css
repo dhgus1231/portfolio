@@ -17,46 +17,70 @@ body {
 }
 
 @media print {
-  body {
-    background-color: white;
-    font-size: 11pt;
+  @page {
+    size: A4;
+    margin: 12mm 14mm;
   }
-  .no-print {
-    display: none !important;
-  }
-  .print-break {
-    page-break-before: always;
-  }
+
   * {
     -webkit-print-color-adjust: exact;
     print-color-adjust: exact;
   }
 
-  /* 카드가 페이지 중간에 잘리지 않게 */
-  .break-inside-avoid {
-    break-inside: avoid !important;
-    page-break-inside: avoid !important;
-    display: block !important;
+  body {
+    background-color: white;
+    font-size: 9.5pt;
+    color: #1e293b;
   }
 
-  /* 섹션 여백 줄이기 */
+  .no-print {
+    display: none !important;
+  }
+
+  /* 섹션 여백 축소 */
   section {
-    padding-top: 1.5rem !important;
-    padding-bottom: 1.5rem !important;
+    padding: 0.75rem 1.5rem !important;
+    border-bottom: 1px solid #e2e8f0;
   }
 
-  /* Hero 섹션: 인쇄 시 배경 흰색, 텍스트 검정으로 강제 */
+  /* 섹션 제목 */
+  section h2 {
+    font-size: 12pt !important;
+    margin-bottom: 0.5rem !important;
+  }
+
+  /* Hero 배경 강제 흰색 */
   section:first-of-type {
     background: white !important;
     color: #1e293b !important;
+    border-bottom: 2px solid #1e293b !important;
   }
   section:first-of-type * {
     color: inherit !important;
   }
   section:first-of-type h1 {
     color: #0f172a !important;
+    font-size: 20pt !important;
   }
   section:first-of-type a {
     color: #334155 !important;
+  }
+
+  /* 카드 잘림 방지 */
+  .break-inside-avoid {
+    break-inside: avoid !important;
+    page-break-inside: avoid !important;
+    display: block !important;
+  }
+
+  /* Troubleshooting 4번째 이후 새 페이지 */
+  .print-page-break {
+    break-before: page !important;
+    page-break-before: always !important;
+  }
+
+  /* Experience+EducationCerts 페이지 유지 */
+  .print-block {
+    display: block !important;
   }
 }

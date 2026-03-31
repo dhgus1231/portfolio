@@ -11,11 +11,16 @@ export default function Troubleshooting() {
       <div className="max-w-4xl mx-auto">
         <h2 className="text-2xl font-bold text-slate-800 mb-2">Troubleshooting</h2>
         <p className="text-sm text-slate-500 mb-6">문제를 어떻게 정의하고 해결했는지에 대한 기록입니다.</p>
-        <div className="flex flex-col gap-5 print:block print:space-y-5">
+        <div className="flex flex-col gap-5 print:block print:space-y-4">
           {troubleshooting.map((item, i) => (
-            <div key={i} className="bg-white border border-slate-200 rounded-xl overflow-hidden print:rounded-lg break-inside-avoid">
+            <div
+              key={i}
+              className={`bg-white border border-slate-200 rounded-xl overflow-hidden print:rounded-lg break-inside-avoid ${
+                i === 4 ? 'print-page-break' : ''
+              }`}
+            >
               {/* Header */}
-              <div className="flex items-start justify-between gap-3 px-6 py-4 bg-slate-50 border-b border-slate-200">
+              <div className="flex items-start justify-between gap-3 px-6 py-4 bg-slate-50 border-b border-slate-200 print:py-2 print:px-4">
                 <div className="flex items-center gap-2 flex-wrap">
                   <span className={`text-xs font-semibold px-2.5 py-1 rounded-full ${categoryColor[item.category]}`}>
                     {item.category}
@@ -23,9 +28,9 @@ export default function Troubleshooting() {
                   <span className="text-xs text-slate-400">{item.project}</span>
                 </div>
               </div>
-              <div className="px-6 py-4">
-                <h3 className="font-bold text-slate-900 mb-4">{item.title}</h3>
-                <div className="flex flex-col gap-3">
+              <div className="px-6 py-4 print:px-4 print:py-3">
+                <h3 className="font-bold text-slate-900 mb-4 print:mb-2 print:text-sm">{item.title}</h3>
+                <div className="flex flex-col gap-3 print:gap-1.5">
                   {[
                     { label: '문제 상황', color: 'bg-red-400', text: item.problem },
                     { label: '원인 분석', color: 'bg-yellow-400', text: item.cause },
@@ -37,7 +42,7 @@ export default function Troubleshooting() {
                         <div className={`w-1.5 h-1.5 rounded-full mt-1.5 ${color}`} />
                         <span className="text-xs font-semibold text-slate-500 w-16 shrink-0">{label}</span>
                       </div>
-                      <p className="text-sm text-slate-700 leading-relaxed">{text}</p>
+                      <p className="text-sm text-slate-700 leading-relaxed print:text-xs">{text}</p>
                     </div>
                   ))}
                 </div>
