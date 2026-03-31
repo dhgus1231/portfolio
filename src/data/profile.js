@@ -16,11 +16,16 @@ export const profile = {
 
   projects: [
     {
+      key: 'ai-voice',
       title: 'AI 보이스 상담 시스템',
       subtitle: '온프레미스 LLM 기반 · It-os 납품',
       period: '2025.12 – 2026.02',
       role: '팀장 (기여도 50%)',
       overview: 'Asterisk(VoIP) → STT → LLM → TTS로 이어지는 전화 AI 상담 파이프라인. Kanana 8B 모델을 vLLM으로 서빙하는 온프레미스 구조로 It-os에 납품.',
+      architecture: {
+        flow: ['Asterisk ARI', 'RTP 수신', 'CLOVA STT', 'Spring Boot\nCallFlow', 'Kanana 8B\n(vLLM)', 'ElevenLabs TTS'],
+        note: 'ChromaDB RAG 연동 · LoRA 파인튜닝 · Docker Compose 인프라',
+      },
       contribution: [
         '전체 시스템 아키텍처 설계 (파이프라인 구조 정의)',
         'Spring Boot 기반 CallFlow 통합 서비스 구현 (세션 관리·STT 콜백·LLM·TTS 연동)',
@@ -33,11 +38,16 @@ export const profile = {
       highlight: true,
     },
     {
+      key: 'uwb',
       title: 'UWB 기반 실내 위치추적 시스템',
       subtitle: '삼변측량 알고리즘 설계 · (주)메티스 납품',
       period: '2024.05 – 2024.09',
       role: '학부연구생 (기여도 50%)',
       overview: 'UWB 센서와 삼변측량 알고리즘으로 산업 현장 내 작업자 위치를 실시간 추적하고 이동 경로를 시각화하는 시스템. (주)메티스에 납품.',
+      architecture: {
+        flow: ['UWB 앵커 × N', 'RSSI 수집', 'LLS 초기 추정', 'LM 비선형\n최적화', '위치 좌표\n산출', 'Java GUI\n실시간 표시'],
+        note: 'GA + SA로 AP 배치 자동 최적화 · OpenCV Convex Hull 평면도 추출',
+      },
       contribution: [
         'LLS 결과를 LM 초기값으로 활용하는 하이브리드 삼변측량 방식 제안 → X축 오차 224cm → 71cm (68%↓)',
         'HDOP에 동일축 패널티 가중치를 추가한 커스텀 적합도 함수 설계',
@@ -45,15 +55,20 @@ export const profile = {
         'OpenCV + Convex Hull 기반 평면도 벽 추출 알고리즘 구현',
         'Java GUI 실시간 모니터링 프로그램 구현 및 10,000회 시뮬레이션 검증',
       ],
-      tags: ['Java', 'UWB', 'LLS+LM', '유전 알고리즘', 'OpenCV', 'GUI'],
+      tags: ['Java', 'UWB', 'LLS+LM', '유전 알고리즘', '시뮬레이티드 어닐링', 'OpenCV', 'GUI'],
       highlight: true,
     },
     {
+      key: 'epts',
       title: '풋살 선수 분석 플랫폼 (EPTS)',
       subtitle: '창업동아리 Alphaca · 졸업설계 연계',
       period: '2025.02 – 2025.06',
       role: '백엔드 팀장',
       overview: 'UWB 센서로 풋살 선수의 실시간 위치를 추적하고 경기 데이터를 분석하는 EPTS 플랫폼. Jira 스프린트 기반으로 운영.',
+      architecture: {
+        flow: ['UWB 센서', 'Kafka\n스트리밍', 'ClickHouse\n저장/분석', 'Spring Boot\nAPI', 'Frontend\n시각화'],
+        note: 'Docker Compose 인프라 · Jira 스프린트 기반 개발 · 6종 분석 지표 SQL',
+      },
       contribution: [
         'Kafka → ClickHouse 실시간 위치 데이터 파이프라인 설계 및 구현',
         '히트맵·이동거리·팀 압박 스코어·수비라인 높이·전술유지도·탈압박 등 6종 분석 지표 SQL 구현',
@@ -67,6 +82,7 @@ export const profile = {
 
   experience: [
     {
+      key: 'wiseitech',
       company: '위세아이텍',
       role: '인턴 (주임)',
       department: 'DM사업부',
@@ -74,6 +90,7 @@ export const profile = {
       tasks: ['공공데이터 품질 진단', 'DB 기반 데이터 분석', '논리적 개선 방안 보고서 작성'],
     },
     {
+      key: 'lghv',
       company: 'LG헬로비전',
       role: '아르바이트',
       department: '전기차충전기사업부',

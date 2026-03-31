@@ -1,6 +1,6 @@
 import ProfilePage from './components/ProfilePage';
-import Projects from './components/Projects';
-import Troubleshooting from './components/Troubleshooting';
+import ProjectPage from './components/ProjectPage';
+import ExperiencePage from './components/ExperiencePage';
 import './index.css';
 
 function App() {
@@ -17,19 +17,29 @@ function App() {
         </button>
       </div>
 
-      {/* Page 1: 프로필 */}
+      {/* Page 1: 프로필 전체 */}
       <div className="print-page max-w-6xl mx-auto mb-8 print:mb-0 print:max-w-none shadow-lg print:shadow-none">
         <ProfilePage />
       </div>
 
-      {/* Page 2: Projects */}
+      {/* Page 2: AI 보이스 상담 시스템 */}
       <div className="print-page max-w-6xl mx-auto mb-8 print:mb-0 print:max-w-none shadow-lg print:shadow-none">
-        <Projects />
+        <ProjectPage projectKey="ai-voice" />
       </div>
 
-      {/* Pages 3-4: Troubleshooting */}
-      <div className="max-w-6xl mx-auto print:max-w-none">
-        <Troubleshooting />
+      {/* Page 3: UWB 실내 위치추적 */}
+      <div className="print-page max-w-6xl mx-auto mb-8 print:mb-0 print:max-w-none shadow-lg print:shadow-none">
+        <ProjectPage projectKey="uwb" />
+      </div>
+
+      {/* Page 4: EPTS 플랫폼 */}
+      <div className="print-page max-w-6xl mx-auto mb-8 print:mb-0 print:max-w-none shadow-lg print:shadow-none">
+        <ProjectPage projectKey="epts" />
+      </div>
+
+      {/* Page 5: 위세아이텍 인턴십 */}
+      <div className="print-page max-w-6xl mx-auto mb-8 print:mb-0 print:max-w-none shadow-lg print:shadow-none">
+        <ExperiencePage />
       </div>
 
       <footer className="no-print py-8 text-center text-xs text-slate-400">
