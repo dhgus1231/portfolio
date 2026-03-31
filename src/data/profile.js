@@ -45,8 +45,17 @@ export const profile = {
       role: '학부연구생 (기여도 50%)',
       overview: 'UWB 센서와 삼변측량 알고리즘으로 산업 현장 내 작업자 위치를 실시간 추적하고 이동 경로를 시각화하는 시스템. (주)메티스에 납품.',
       architecture: {
-        flow: ['UWB 앵커 × N', 'RSSI 수집', 'LLS 초기 추정', 'LM 비선형\n최적화', '위치 좌표\n산출', 'Java GUI\n실시간 표시'],
-        note: 'GA + SA로 AP 배치 자동 최적화 · OpenCV Convex Hull 평면도 추출',
+        flows: [
+          {
+            label: '위치 추적',
+            nodes: ['UWB 앵커 × N', 'RSSI 수집', 'LLS 초기 추정', 'LM 비선형\n최적화', '위치 좌표\n산출', 'Java GUI\n실시간 표시'],
+          },
+          {
+            label: 'AP 배치 최적화',
+            nodes: ['평면도 입력', 'OpenCV\nConvex Hull', '커스텀 HDOP\n적합도 함수', '유전 알고리즘\n+ SA', '최적 AP\n배치 산출'],
+          },
+        ],
+        note: '동일축 패널티 가중치를 포함한 커스텀 적합도 함수로 AP 기하학적 분산 자동 최적화',
       },
       contribution: [
         'LLS 결과를 LM 초기값으로 활용하는 하이브리드 삼변측량 방식 제안 → X축 오차 224cm → 71cm (68%↓)',

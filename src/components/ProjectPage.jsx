@@ -6,22 +6,42 @@ const categoryColor = {
   업무: 'bg-orange-100 text-orange-700',
 };
 
-function ArchitectureFlow({ flow, note }) {
+function FlowRow({ nodes }) {
   return (
-    <div>
-      <div className="flex flex-wrap items-center gap-1.5">
-        {flow.map((node, i) => (
-          <div key={i} className="flex items-center gap-1.5">
-            <div className="bg-blue-50 border border-blue-200 text-blue-800 px-2.5 py-1.5 rounded-lg text-xs font-medium text-center whitespace-pre-line leading-tight">
-              {node}
-            </div>
-            {i < flow.length - 1 && (
-              <span className="text-blue-300 font-bold text-sm">→</span>
-            )}
+    <div className="flex flex-wrap items-center gap-1.5">
+      {nodes.map((node, i) => (
+        <div key={i} className="flex items-center gap-1.5">
+          <div className="bg-blue-50 border border-blue-200 text-blue-800 px-2.5 py-1.5 rounded-lg text-xs font-medium text-center whitespace-pre-line leading-tight">
+            {node}
           </div>
-        ))}
-      </div>
-      {note && <p className="text-xs text-slate-500 mt-2">{note}</p>}
+          {i < nodes.length - 1 && (
+            <span className="text-blue-300 font-bold text-sm">→</span>
+          )}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function ArchitectureFlow({ architecture }) {
+  // flows 배열이 있으면 복수 플로우, 없으면 단일 flow
+  const flows = architecture.flows
+    ? architecture.flows
+    : [{ nodes: architecture.flow }];
+
+  return (
+    <div className="flex flex-col gap-2.5 print:gap-2">
+      {flows.map((f, i) => (
+        <div key={i}>
+          {f.label && (
+            <p className="text-xs text-slate-400 font-medium mb-1">{f.label}</p>
+          )}
+          <FlowRow nodes={f.nodes} />
+        </div>
+      ))}
+      {architecture.note && (
+        <p className="text-xs text-slate-500">{architecture.note}</p>
+      )}
     </div>
   );
 }
@@ -84,7 +104,7 @@ export default function ProjectPage({ projectKey }) {
 
           <div>
             <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">Architecture</p>
-            <ArchitectureFlow flow={project.architecture.flow} note={project.architecture.note} />
+            <ArchitectureFlow architecture={project.architecture} />
           </div>
 
           <div>
