@@ -43,4 +43,19 @@ body {
     padding-top: 1.5rem !important;
     padding-bottom: 1.5rem !important;
   }
+
+  /* Hero 섹션: 인쇄 시 배경 흰색, 텍스트 검정으로 강제 */
+  section:first-of-type {
+    background: white !important;
+    color: #1e293b !important;
+  }
+  section:first-of-type * {
+    color: inherit !important;
+  }
+  section:first-of-type h1 {
+    color: #0f172a !important;
+  }
+  section:first-of-type a {
+    color: #334155 !important;
+  }
 }
