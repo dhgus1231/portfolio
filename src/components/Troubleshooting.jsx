@@ -11,7 +11,7 @@ export default function Troubleshooting() {
       <div className="max-w-4xl mx-auto">
         <h2 className="text-2xl font-bold text-slate-800 mb-2">Troubleshooting</h2>
         <p className="text-sm text-slate-500 mb-6">문제를 어떻게 정의하고 해결했는지에 대한 기록입니다.</p>
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-5 print:block print:space-y-5">
           {troubleshooting.map((item, i) => (
             <div key={i} className="bg-white border border-slate-200 rounded-xl overflow-hidden print:rounded-lg break-inside-avoid">
               {/* Header */}

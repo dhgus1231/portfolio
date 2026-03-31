@@ -5,7 +5,7 @@ export default function Projects() {
     <section className="py-10 px-8 border-b border-slate-200">
       <div className="max-w-4xl mx-auto">
         <h2 className="text-2xl font-bold text-slate-800 mb-6">Projects</h2>
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-6 print:block print:space-y-6">
           {profile.projects.map((project) => (
             <div
               key={project.title}
