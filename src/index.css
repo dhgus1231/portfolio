@@ -56,6 +56,7 @@ body {
      5p: Experience(5) + EducationCerts(6)
   */
   section:nth-of-type(3),
+  section:nth-of-type(4),
   section:nth-of-type(5) {
     break-before: page !important;
     page-break-before: always !important;
