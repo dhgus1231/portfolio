@@ -66,6 +66,14 @@ body {
     color: #334155 !important;
   }
 
+  /* 섹션 순서: Hero(1) Skills(2) Projects(3) Troubleshooting(4) Experience(5) EducationCerts(6) */
+  /* Projects, Troubleshooting 앞에서 새 페이지 시작 */
+  section:nth-of-type(3),
+  section:nth-of-type(4) {
+    break-before: page !important;
+    page-break-before: always !important;
+  }
+
   /* 카드 잘림 방지 */
   .break-inside-avoid {
     break-inside: avoid !important;
