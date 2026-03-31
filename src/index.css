@@ -19,7 +19,7 @@ body {
 @media print {
   @page {
     size: A4;
-    margin: 12mm 14mm;
+    margin: 10mm 12mm;
   }
 
   * {
@@ -29,7 +29,7 @@ body {
 
   body {
     background-color: white;
-    font-size: 9.5pt;
+    font-size: 9pt;
     color: #1e293b;
   }
 
@@ -37,58 +37,56 @@ body {
     display: none !important;
   }
 
-  /* 섹션 여백 축소 */
+  /* 섹션 여백 최소화 */
   section {
-    padding: 0.75rem 1.5rem !important;
+    padding: 0.6rem 1.2rem !important;
     border-bottom: 1px solid #e2e8f0;
   }
 
-  /* 섹션 제목 */
   section h2 {
-    font-size: 12pt !important;
-    margin-bottom: 0.5rem !important;
+    font-size: 11pt !important;
+    margin-bottom: 0.4rem !important;
   }
 
-  /* Hero 배경 강제 흰색 */
+  /* 페이지 구조:
+     1p: Hero(1) + Skills(2)
+     2p: Projects(3)
+     3p: Troubleshooting(4) 전반
+     4p: Troubleshooting(4) 후반
+     5p: Experience(5) + EducationCerts(6)
+  */
+  section:nth-of-type(3),
+  section:nth-of-type(5) {
+    break-before: page !important;
+    page-break-before: always !important;
+  }
+
+  /* Hero 흰 배경 강제 */
   section:first-of-type {
     background: white !important;
     color: #1e293b !important;
-    border-bottom: 2px solid #1e293b !important;
+    border-bottom: 2px solid #334155 !important;
   }
   section:first-of-type * {
     color: inherit !important;
   }
   section:first-of-type h1 {
     color: #0f172a !important;
-    font-size: 20pt !important;
+    font-size: 18pt !important;
   }
   section:first-of-type a {
     color: #334155 !important;
-  }
-
-  /* 섹션 순서: Hero(1) Skills(2) Projects(3) Troubleshooting(4) Experience(5) EducationCerts(6) */
-  /* Projects, Troubleshooting 앞에서 새 페이지 시작 */
-  section:nth-of-type(3),
-  section:nth-of-type(4) {
-    break-before: page !important;
-    page-break-before: always !important;
   }
 
   /* 카드 잘림 방지 */
   .break-inside-avoid {
     break-inside: avoid !important;
     page-break-inside: avoid !important;
-    display: block !important;
   }
 
-  /* Troubleshooting 4번째 이후 새 페이지 */
+  /* Troubleshooting 5번째 카드 앞 페이지 나누기 */
   .print-page-break {
     break-before: page !important;
     page-break-before: always !important;
-  }
-
-  /* Experience+EducationCerts 페이지 유지 */
-  .print-block {
-    display: block !important;
   }
 }
