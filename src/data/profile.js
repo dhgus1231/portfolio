@@ -28,6 +28,7 @@ export const profile = {
       },
       contribution: [
         '전체 시스템 아키텍처 설계 (파이프라인 구조 정의)',
+        '온프레미스 Linux 서버 환경 직접 구축 (GPU 서버 OS 설치·네트워크 설정·환경 구성)',
         'Spring Boot 기반 CallFlow 통합 서비스 구현 (세션 관리·STT 콜백·LLM·TTS 연동)',
         'Hugging Face Transformers + LoRA 방식으로 Kanana 8B 파인튜닝',
         'ChromaDB 기반 RAG 아키텍처 설계 및 구현',
