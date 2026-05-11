@@ -32,12 +32,17 @@ function App() {
         <ProjectPage projectKey="uwb" />
       </div>
 
-      {/* Page 4: EPTS 플랫폼 */}
+      {/* Page 4: AIVLE 1차 미니프로젝트 */}
+      <div className="print-page max-w-6xl mx-auto mb-8 print:mb-0 print:max-w-none shadow-lg print:shadow-none">
+        <ProjectPage projectKey="aivle-minip1" />
+      </div>
+
+      {/* Page 5: EPTS 플랫폼 */}
       <div className="print-page max-w-6xl mx-auto mb-8 print:mb-0 print:max-w-none shadow-lg print:shadow-none">
         <ProjectPage projectKey="epts" />
       </div>
 
-      {/* Page 5: 위세아이텍 인턴십 */}
+      {/* Page 6: 위세아이텍 인턴십 */}
       <div className="print-page max-w-6xl mx-auto mb-8 print:mb-0 print:max-w-none shadow-lg print:shadow-none">
         <ExperiencePage />
       </div>

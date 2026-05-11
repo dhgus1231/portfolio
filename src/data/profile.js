@@ -1,15 +1,15 @@
 export const profile = {
   name: '권오현',
   nameEn: 'Kwon OhHyun',
-  title: 'AI · 데이터 백엔드 개발자',
+  title: 'SW 개발자 · AI / 백엔드',
   email: 'ohhyun1231@gmail.com',
   phone: '010-8395-5565',
   github: 'https://github.com/dhgus1231',
-  bio: 'LLM/RAG 기반 AI 시스템 설계와 데이터 분석 경험을 보유한 개발자입니다. 실내 위치추적 알고리즘 개발부터 온프레미스 AI 상담 시스템 구축까지, 실무 납품 경험을 갖추고 있습니다.',
+  bio: '납품 경험을 보유한 SW 개발자 권오현입니다. KT AIVLE 9기 과정에서 AI 개발 역량을 심화하며, LLM 파인튜닝부터 실시간 데이터 파이프라인까지 직접 구축하고 운영한 경험을 갖추고 있습니다. 본 포트폴리오는 AI 시스템 설계, 백엔드 개발, 알고리즘 최적화 능력을 실제 납품 프로젝트와 수치 기반 성과로 제시합니다.',
 
   skills: [
     { category: 'Language', items: ['Python', 'Java'] },
-    { category: 'AI / ML', items: ['Hugging Face Transformers', 'LoRA', 'vLLM', 'ChromaDB', 'RAG', 'OpenCV'] },
+    { category: 'AI / ML', items: ['TensorFlow/Keras', 'Hugging Face Transformers', 'LoRA', 'vLLM', 'ChromaDB', 'RAG', 'Scikit-learn', 'OpenCV'] },
     { category: 'Backend / Infra', items: ['Spring Boot', 'gRPC', 'Asterisk', 'Kafka', 'ClickHouse', 'MySQL', 'Docker'] },
     { category: 'Tools', items: ['Git / GitHub', 'Jira'] },
   ],
@@ -58,7 +58,7 @@ export const profile = {
         note: '동일축 패널티 가중치를 포함한 커스텀 적합도 함수로 AP 기하학적 분산 자동 최적화',
       },
       contribution: [
-        'LLS 결과를 LM 초기값으로 활용하는 하이브리드 삼변측량 방식 제안 → X축 오차 224cm → 71cm (68%↓)',
+        'LLS 결과를 LM 초기값으로 활용하는 하이브리드 삼변측량 방식 제안 → 2D 위치 오차(RMSE) 224cm → 71cm (68%↓, 10,000회 시뮬레이션 검증)',
         'HDOP에 동일축 패널티 가중치를 추가한 커스텀 적합도 함수 설계',
         '유전 알고리즘 + 시뮬레이티드 어닐링 결합으로 최적 AP 배치 자동 산출 (HDOP 40.12 → 3.42)',
         'OpenCV + Convex Hull 기반 평면도 벽 추출 알고리즘 구현',
@@ -66,6 +66,27 @@ export const profile = {
       ],
       tags: ['Java', 'UWB', 'LLS+LM', '유전 알고리즘', '시뮬레이티드 어닐링', 'OpenCV', 'GUI'],
       highlight: true,
+    },
+    {
+      key: 'aivle-minip1',
+      title: 'AI 기반 고객 만족도 예측 시스템',
+      subtitle: 'KT AIVLE 9기 1차 미니프로젝트',
+      period: '2026.04.14 – 2026.04.15',
+      role: '조장 · 전처리 파이프라인 구축 · 딥러닝 Fine-tuning',
+      overview: '항공사 고객 만족도 데이터를 기반으로 가설 수립 및 통계 검증을 거쳐 TensorFlow/Keras 딥러닝 모델을 구축하고, 추가 데이터 Fine-tuning으로 불만족 고객 탐지 성능을 향상시킨 AI 모델링 프로젝트.',
+      architecture: {
+        flow: ['데이터 수집', '가설 수립\n& 통계 검증', '전처리\n파이프라인', 'Base Model\n구축', '추가 데이터\nFine-tuning', '서비스 개선\n방향 도출'],
+        note: 'TensorFlow/Keras · Scikit-learn · 이진 분류 (sigmoid + binary_crossentropy) · EarlyStopping · Dropout',
+      },
+      contribution: [
+        '조장으로서 8인 팀 R&R 정립 및 프로젝트 방향 조율',
+        '전처리 파이프라인 구축으로 반복 작업 자동화 (Pandas, NumPy, Joblib)',
+        '하이퍼파라미터 반복 실험으로 최적 딥러닝 모델 도출 (Dropout, EarlyStopping 적용)',
+        '추가 데이터 Fine-tuning → 불만족 고객(class 0) Recall 0.81 → 0.96, Accuracy 95% 달성',
+        '가설→분석→결론 비즈니스 스토리라인 구성으로 서비스 개선 방향 제시 (타 조 대비 차별화)',
+      ],
+      tags: ['Python', 'TensorFlow/Keras', 'Scikit-learn', 'Pandas', 'NumPy', 'Joblib', 'Fine-tuning'],
+      highlight: false,
     },
     {
       key: 'epts',
@@ -125,6 +146,7 @@ export const profile = {
   ],
 
   certifications: [
+    { name: 'KT AIVLE 9기 AI 개발자 교육', issuer: 'KT', date: '2026.04 ~', note: '교육 이수 중' },
     { name: '정보처리기사', issuer: '한국산업인력공단', date: '2025.06' },
     { name: '직업능력개발훈련교사 3급', issuer: '고용노동부', date: '2026.02' },
     { name: '파이썬 프로그래밍 활용능력 1급', issuer: '한국정보인재개발원', date: '2023.11' },
