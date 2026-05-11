@@ -2,16 +2,23 @@ export const profile = {
   name: '권오현',
   nameEn: 'Kwon OhHyun',
   title: 'SW 개발자 · AI / 백엔드',
+  headline: '납품 2건을 완료한 AI·백엔드 개발자 — LLM 시스템 설계부터 실시간 파이프라인까지 직접 구축',
   email: 'ohhyun1231@gmail.com',
   phone: '010-8395-5565',
   github: 'https://github.com/dhgus1231',
   bio: '납품 경험을 보유한 SW 개발자 권오현입니다. KT AIVLE 9기 과정에서 AI 개발 역량을 심화하며, LLM 파인튜닝부터 실시간 데이터 파이프라인까지 직접 구축하고 운영한 경험을 갖추고 있습니다. 본 포트폴리오는 AI 시스템 설계, 백엔드 개발, 알고리즘 최적화 능력을 실제 납품 프로젝트와 수치 기반 성과로 제시합니다.',
 
+  strengths: [
+    { keyword: '리더십', desc: '3개 프로젝트에서 팀장·조장으로 팀 방향 조율 및 R&R 정립' },
+    { keyword: '설계 능력', desc: '납품 프로젝트 전체 아키텍처를 직접 설계하고 구현' },
+    { keyword: '커뮤니케이션', desc: '고객사 기술 협의 주도 및 요구사항 기술 스펙 전환' },
+  ],
+
   skills: [
-    { category: 'Language', items: ['Python', 'Java'] },
-    { category: 'AI / ML', items: ['TensorFlow/Keras', 'Hugging Face Transformers', 'LoRA', 'vLLM', 'ChromaDB', 'RAG', 'Scikit-learn', 'OpenCV'] },
-    { category: 'Backend / Infra', items: ['Spring Boot', 'gRPC', 'Asterisk', 'Kafka', 'ClickHouse', 'MySQL', 'Docker'] },
-    { category: 'Tools', items: ['Git / GitHub', 'Jira'] },
+    { category: 'Language', desc: '백엔드·알고리즘 구현', items: ['Python', 'Java'] },
+    { category: 'AI / ML', desc: '파인튜닝·RAG·딥러닝 모델링·서빙', items: ['TensorFlow/Keras', 'Hugging Face Transformers', 'LoRA', 'vLLM', 'ChromaDB', 'RAG', 'Scikit-learn', 'OpenCV'] },
+    { category: 'Backend / Infra', desc: 'API·실시간 파이프라인·인프라 구축', items: ['Spring Boot', 'gRPC', 'Asterisk', 'Kafka', 'ClickHouse', 'MySQL', 'Docker'] },
+    { category: 'Tools', desc: '협업·이슈 관리', items: ['Git / GitHub', 'Jira'] },
   ],
 
   projects: [

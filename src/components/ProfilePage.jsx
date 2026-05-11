@@ -38,7 +38,8 @@ export default function ProfilePage() {
           <div className="flex flex-col gap-3 print:gap-2">
             {profile.skills.map((group) => (
               <div key={group.category}>
-                <p className="text-xs text-blue-300 font-semibold mb-1">{group.category}</p>
+                <p className="text-xs text-blue-300 font-semibold mb-0.5">{group.category}</p>
+                {group.desc && <p className="text-xs text-slate-400 italic mb-1">{group.desc}</p>}
                 <div className="flex flex-wrap gap-1">
                   {group.items.map((item) => (
                     <span key={item} className="text-xs text-slate-300 bg-slate-700 px-1.5 py-0.5 rounded print:bg-slate-800">
@@ -54,6 +55,28 @@ export default function ProfilePage() {
 
       {/* ── Right Content ──────────────────────────────── */}
       <main className="flex-1 p-8 print:p-6 flex flex-col gap-6 print:gap-4">
+        {/* Headline */}
+        {profile.headline && (
+          <div className="border-l-4 border-blue-500 pl-4 py-1">
+            <p className="text-slate-700 font-medium text-sm print:text-xs">{profile.headline}</p>
+          </div>
+        )}
+
+        {/* 핵심역량 */}
+        {profile.strengths && (
+          <div>
+            <h2 className="text-lg font-bold text-slate-800 pb-1.5 mb-3 border-b-2 border-slate-200 print:text-base print:mb-2">핵심역량</h2>
+            <div className="grid grid-cols-3 gap-3 print:gap-2">
+              {profile.strengths.map((s) => (
+                <div key={s.keyword} className="bg-blue-50 rounded-xl p-4 border border-blue-100 print:rounded-lg print:p-3">
+                  <p className="font-bold text-blue-700 text-sm print:text-xs">{s.keyword}</p>
+                  <p className="text-xs text-slate-600 mt-1 leading-relaxed">{s.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
         {/* Experience */}
         <div>
           <h2 className="text-lg font-bold text-slate-800 pb-1.5 mb-3 border-b-2 border-slate-200 print:text-base print:mb-2">Experience</h2>
