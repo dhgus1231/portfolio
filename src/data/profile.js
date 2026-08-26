@@ -315,11 +315,29 @@ export const profile = {
       role: '백엔드 팀장',
       overview: 'UWB 센서로 풋살 선수의 실시간 위치를 추적하고 경기 데이터를 분석하는 EPTS 플랫폼. Jira 스프린트 기반으로 운영.',
       screens: {
-        label: 'React Native 앱 — 실시간 경기 대시보드 및 분석 지표 시각화',
+        label: 'React Native 앱 — 센서 연결부터 경기 후 분석까지 전체 흐름',
+        note: '트래커 연결 → 포지션 배정 → 실시간 집계 → 지표 분석 순으로 데이터가 흐른다',
         shots: [
-          { src: 'images/epts/screen1.png', caption: '실시간 경기 대시보드', desc: '경기 시간·쿼터·활성 트래커·소모 칼로리 실시간 집계' },
-          { src: 'images/epts/screen2.png', caption: '포지션별 능력치 분석', desc: 'ClickHouse 집계 결과를 6종 지표 레이더 차트로 시각화' },
-          { src: 'images/epts/screen3.png', caption: '주간 목표 · 랭킹', desc: '누적 기록 기반 목표 달성률 및 그룹 내 랭킹 제공' },
+          {
+            src: 'images/epts/01-tracker.png',
+            caption: '① 트래커 연결 상태',
+            desc: 'UWB 트래커와 선수를 1:1 바인딩하고 활성 여부를 주기적으로 폴링 — 위치 데이터 수집의 시작점',
+          },
+          {
+            src: 'images/epts/02-formation.png',
+            caption: '② 포지션 · 포메이션 배정',
+            desc: '팀·포지션 배정(2-2 / 1-2-1)을 저장해 이후 포지션별 분석 지표의 기준으로 사용',
+          },
+          {
+            src: 'images/epts/03-live.png',
+            caption: '③ 실시간 경기 대시보드',
+            desc: '쿼터별·누적 경기 시간과 선수별 태그 연결 상태를 실시간 집계',
+          },
+          {
+            src: 'images/epts/04-report.png',
+            caption: '④ 경기 후 분석 리포트',
+            desc: 'ClickHouse 집계 결과를 6종 지표 레이더로 시각화 — 소모 에너지·이동 거리·종합 스코어 산출',
+          },
         ],
       },
       architecture: {
