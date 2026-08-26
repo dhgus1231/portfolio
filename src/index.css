@@ -16,6 +16,17 @@ body {
   color: #1e293b;
 }
 
+/* 결과물 화면(스크린샷) 페이지: 이미지 높이 제한 — 세로형/가로형 캡처 모두 한 페이지에 맞춤 */
+.shot-img {
+  max-height: 62vh;
+}
+
+/* 2열 그리드(캡처 3장 이상)에서는 한 페이지에 두 줄이 들어가므로 높이를 줄인다.
+   그러지 않으면 아래쪽 캡처가 페이지 밖으로 밀려난다. */
+.grid .shot-img {
+  max-height: 34vh;
+}
+
 @media print {
   @page {
     size: A4 landscape;
@@ -47,6 +58,15 @@ body {
   .print-page-break {
     break-before: page !important;
     page-break-before: always !important;
+  }
+
+  /* 결과물 화면 페이지: A4 가로 한 장에 들어가도록 높이 고정 */
+  .shot-img {
+    max-height: 135mm;
+  }
+
+  .grid .shot-img {
+    max-height: 68mm;
   }
 
   /* 카드 잘림 방지 */

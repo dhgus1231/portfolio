@@ -110,13 +110,18 @@ export const profile = {
       period: '2026.06 – 2026.08',
       role: '조장 · 전체 아키텍처 설계 · 백엔드/AI/인프라 (7인)',
       screens: {
-        label: '직접 구현한 AI 문서 생성 · 학교폭력 사안 처리 화면',
+        label: 'AI 문서 생성 · 시간표 결강 조율 · 학교폭력 사안 처리 화면',
         note: '학생 정보는 모두 가상 데이터 · 진술 원문은 비식별화 후 외부 LLM에 전달',
         shots: [
           {
             src: 'images/aide/doc-generate.png',
             caption: '행정문서 초안 생성 — 학교 고유 양식 반영',
             desc: '학교마다 다른 hwpx 양식을 첨부하면 코드 수정 없이 그 서식을 그대로 채워 출력. 문서 구조 인식을 LLM으로 전환해 새 양식에도 대응',
+          },
+          {
+            src: 'images/aide/timetable-adjust.png',
+            caption: '시간표 결강 조율 — 자연어 요청으로 대강 후보 조회',
+            desc: '“손승우 선생님 목요일 오전 병가” 같은 문장을 그대로 입력받아 제약을 만족하는 대강 후보를 순위로 제시. 반영 여부는 담당자가 고르고 시스템은 자동 확정하지 않음',
           },
           {
             src: 'images/aide/gbv-deident.png',
@@ -127,11 +132,6 @@ export const profile = {
             src: 'images/aide/gbv-verify.png',
             caption: '진술 교차검증 — 모순 검출과 근거 제시',
             desc: '피해·가해 진술을 대조해 모순 의심 문장을 검출하고, 판정 근거를 원문 인용과 함께 제시. 인용이 원문에 없으면 판정을 폐기',
-          },
-          {
-            src: 'images/aide/gbv-report.png',
-            caption: '보고서 생성 — 판단 항목은 공란 유지',
-            desc: '자체해결 4요건 판별을 돕고 사안조사 보고서·기안문을 자동 생성. 가해 여부·조치 수위 등 법이 정한 판단 항목은 시스템이 채우지 않음',
           },
         ],
       },
