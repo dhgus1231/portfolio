@@ -1,6 +1,7 @@
 import ProfilePage from './components/ProfilePage';
 import ProjectPage from './components/ProjectPage';
 import ExperiencePage from './components/ExperiencePage';
+import ScreenshotPage from './components/ScreenshotPage';
 import './index.css';
 
 function App() {
@@ -27,9 +28,19 @@ function App() {
         <ProjectPage projectKey="ai-voice" />
       </div>
 
+      {/* Page 2-1: AI 보이스 상담 — 결과물 화면 (실서비스 챗봇) */}
+      <div className="print-page max-w-6xl mx-auto mb-8 print:mb-0 print:max-w-none shadow-lg print:shadow-none">
+        <ScreenshotPage projectKey="ai-voice" />
+      </div>
+
       {/* Page 3: AIDE 교사 행정업무 지원 시스템 */}
       <div className="print-page max-w-6xl mx-auto mb-8 print:mb-0 print:max-w-none shadow-lg print:shadow-none">
         <ProjectPage projectKey="aide" />
+      </div>
+
+      {/* Page 3-1: AIDE — 결과물 화면 (직접 구현 파트) */}
+      <div className="print-page max-w-6xl mx-auto mb-8 print:mb-0 print:max-w-none shadow-lg print:shadow-none">
+        <ScreenshotPage projectKey="aide" />
       </div>
 
       {/* Page 3: UWB 실내 위치추적 */}
@@ -45,6 +56,11 @@ function App() {
       {/* Page 5: EPTS 플랫폼 */}
       <div className="print-page max-w-6xl mx-auto mb-8 print:mb-0 print:max-w-none shadow-lg print:shadow-none">
         <ProjectPage projectKey="epts" />
+      </div>
+
+      {/* Page 5-1: EPTS — 결과물 화면 */}
+      <div className="print-page max-w-6xl mx-auto mb-8 print:mb-0 print:max-w-none shadow-lg print:shadow-none">
+        <ScreenshotPage projectKey="epts" />
       </div>
 
       {/* Page 6: 위세아이텍 인턴십 — 숨김(경력, 포폴 비노출). 내용은 삭제하지 않고 렌더만 제외 */}

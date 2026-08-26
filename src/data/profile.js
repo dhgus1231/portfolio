@@ -30,6 +30,23 @@ export const profile = {
       period: '2025.12 – 2026.02',
       role: '팀장 (기여도 50%)',
       overview: '인바운드 전화 상담은 Asterisk → STT → LLM → TTS 파이프라인으로, 아웃바운드 상담은 RAG 기반 챗봇으로 구현한 2채널 AI 상담 시스템. Kanana 8B 온프레미스 서빙, It-os 납품.',
+      demo: { href: 'https://gigapang.com/chat', label: 'gigapang.com/chat' },
+      screens: {
+        label: '아웃바운드 RAG 챗봇 — 고객사(기가팡) 실서비스 운영 화면',
+        note: '실제 서비스 URL: https://gigapang.com/chat · 고객 개인정보 영역은 마스킹 처리',
+        shots: [
+          {
+            src: 'images/gigapang/chat-1.png',
+            caption: '단계별 조건 수집 (슬롯 추출)',
+            desc: '통신사·속도·TV·휴대폰 회선을 되물어 상담 슬롯을 채우고, 결합할인 대상 여부를 판정',
+          },
+          {
+            src: 'images/gigapang/chat-2.png',
+            caption: '자유 질문 → 근거 있는 요금 산출',
+            desc: '"설치비는 얼마야?" 같은 비정형 질문을 Router LLM이 분류하고, RAG로 찾은 요금·지원금·약정 조건을 근거와 함께 응답',
+          },
+        ],
+      },
       architecture: {
         flows: [
           { label: '인바운드 (음성)', nodes: ['Asterisk ARI', 'RTP 수신', 'Qwen3-ASR\n(로컬 STT)', 'Spring Boot\nCallFlow', 'Kanana 8B\n(vLLM)', 'ElevenLabs TTS'] },
@@ -92,6 +109,32 @@ export const profile = {
       subtitle: 'KT AIVLE 9기 빅프로젝트 · 한국교육과정평가원 대상 교육 행정 AI 서비스',
       period: '2026.06 – 2026.08',
       role: '조장 · 전체 아키텍처 설계 · 백엔드/AI/인프라 (7인)',
+      screens: {
+        label: '직접 구현한 AI 문서 생성 · 학교폭력 사안 처리 화면',
+        note: '학생 정보는 모두 가상 데이터 · 진술 원문은 비식별화 후 외부 LLM에 전달',
+        shots: [
+          {
+            src: 'images/aide/doc-generate.png',
+            caption: '행정문서 초안 생성 — 학교 고유 양식 반영',
+            desc: '학교마다 다른 hwpx 양식을 첨부하면 코드 수정 없이 그 서식을 그대로 채워 출력. 문서 구조 인식을 LLM으로 전환해 새 양식에도 대응',
+          },
+          {
+            src: 'images/aide/gbv-deident.png',
+            caption: '진술 등록 · 비식별화 — 법정 절차 안내',
+            desc: '음성 진술을 전사한 뒤 실명을 역할·관계가 남는 코드명으로 치환. 원문은 외부 LLM에 전달하지 않으며, 법정 처리 시한을 함께 관리',
+          },
+          {
+            src: 'images/aide/gbv-verify.png',
+            caption: '진술 교차검증 — 모순 검출과 근거 제시',
+            desc: '피해·가해 진술을 대조해 모순 의심 문장을 검출하고, 판정 근거를 원문 인용과 함께 제시. 인용이 원문에 없으면 판정을 폐기',
+          },
+          {
+            src: 'images/aide/gbv-report.png',
+            caption: '보고서 생성 — 판단 항목은 공란 유지',
+            desc: '자체해결 4요건 판별을 돕고 사안조사 보고서·기안문을 자동 생성. 가해 여부·조치 수위 등 법이 정한 판단 항목은 시스템이 채우지 않음',
+          },
+        ],
+      },
       overview: '"교사에게 필요한 건 판단을 대신할 AI가 아니라 잡무에서 벗어날 시간"이라는 관점에서, 두 가지 설계 원칙을 세우고 아키텍처를 그 원칙에서 도출했다 — (1) AI는 정리·검색·초안까지, 판단·결재는 교사가 쥔다 (2) 판단이 필요한 지점만 모델이 맡고, 확정적인 제약은 규칙·솔버로 처리한다. 규정 검색·행정문서·학교폭력·시간표를 FE(React)·BE(Spring Boot)·AI(FastAPI 3종) 3계층으로 통합하고, 학생 실명은 외부 LLM에 닿지 않는 개인정보 경계를 코드로 구현.',
       architecture: {
         flows: [
@@ -271,6 +314,14 @@ export const profile = {
       period: '2025.02 – 2025.06',
       role: '백엔드 팀장',
       overview: 'UWB 센서로 풋살 선수의 실시간 위치를 추적하고 경기 데이터를 분석하는 EPTS 플랫폼. Jira 스프린트 기반으로 운영.',
+      screens: {
+        label: 'React Native 앱 — 실시간 경기 대시보드 및 분석 지표 시각화',
+        shots: [
+          { src: 'images/epts/screen1.png', caption: '실시간 경기 대시보드', desc: '경기 시간·쿼터·활성 트래커·소모 칼로리 실시간 집계' },
+          { src: 'images/epts/screen2.png', caption: '포지션별 능력치 분석', desc: 'ClickHouse 집계 결과를 6종 지표 레이더 차트로 시각화' },
+          { src: 'images/epts/screen3.png', caption: '주간 목표 · 랭킹', desc: '누적 기록 기반 목표 달성률 및 그룹 내 랭킹 제공' },
+        ],
+      },
       architecture: {
         flow: ['UWB 센서', 'Kafka\n스트리밍', 'ClickHouse\n저장/분석', 'Spring Boot\nAPI', 'Frontend\n시각화'],
         note: 'Docker Compose 인프라 · Jira 스프린트 기반 개발 · 6종 분석 지표 SQL',
