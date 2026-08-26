@@ -58,7 +58,7 @@ function ArchitectureFlow({ architecture }) {
 
 function TroubleCard({ item }) {
   return (
-    <div className="bg-slate-50 border border-slate-200 rounded-lg p-3 print:p-2.5">
+    <div className="bg-slate-50 border border-slate-200 rounded-lg p-3 print:p-2.5 break-inside-avoid">
       <div className="flex items-center gap-1.5 mb-2 print:mb-1.5">
         <span className={`text-xs font-semibold px-1.5 py-0.5 rounded-full shrink-0 ${categoryColor[item.category]}`}>
           {item.category}
@@ -85,9 +85,12 @@ function TroubleCard({ item }) {
   );
 }
 
-export default function ProjectPage({ projectKey }) {
+export default function ProjectPage({ projectKey, showTroubleshooting = true }) {
   const project = profile.projects.find(p => p.key === projectKey);
-  const items = troubleshooting.filter(t => t.projectKey === projectKey);
+  // 트러블슈팅이 많은 프로젝트는 별도 페이지로 분리해 본문이 한 장에 들어가게 한다
+  const items = showTroubleshooting
+    ? troubleshooting.filter(t => t.projectKey === projectKey)
+    : [];
 
   return (
     <div className="p-8 print:p-5 bg-white min-h-screen print:min-h-0">
@@ -171,7 +174,7 @@ export default function ProjectPage({ projectKey }) {
                 {project.growth.improvements ? '배운점 & 향후 개선 방향' : '배운점'}
               </p>
               <div className={`grid gap-3 print:gap-2 ${project.growth.improvements ? 'grid-cols-2' : 'grid-cols-1'}`}>
-                <div className="bg-green-50 border border-green-100 rounded-lg p-3 print:p-2.5">
+                <div className="bg-green-50 border border-green-100 rounded-lg p-3 print:p-2.5 break-inside-avoid">
                   <p className="text-xs font-semibold text-green-700 mb-1.5">배운점</p>
                   <ul className="flex flex-col gap-1">
                     {project.growth.lessons.map((l, i) => (
@@ -182,7 +185,7 @@ export default function ProjectPage({ projectKey }) {
                   </ul>
                 </div>
                 {project.growth.improvements && (
-                  <div className="bg-orange-50 border border-orange-100 rounded-lg p-3 print:p-2.5">
+                  <div className="bg-orange-50 border border-orange-100 rounded-lg p-3 print:p-2.5 break-inside-avoid">
                     <p className="text-xs font-semibold text-orange-700 mb-1.5">향후 개선 방향</p>
                     <ul className="flex flex-col gap-1">
                       {project.growth.improvements.map((imp, i) => (
