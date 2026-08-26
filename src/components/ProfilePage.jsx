@@ -8,7 +8,11 @@ export default function ProfilePage() {
         {/* Photo + Name */}
         <div className="flex flex-col items-center gap-3 print:gap-2">
           <div className="w-28 h-28 rounded-full bg-slate-600 border-2 border-slate-500 print:w-20 print:h-20 flex items-center justify-center overflow-hidden">
-            <span className="text-slate-400 text-xs">사진</span>
+            <img
+              src={`${import.meta.env.BASE_URL}images/profile.jpg`}
+              alt={`${profile.name} 프로필 사진`}
+              className="w-full h-full object-cover object-top"
+            />
           </div>
           <div className="text-center">
             <h1 className="text-2xl font-bold print:text-lg">{profile.name}</h1>

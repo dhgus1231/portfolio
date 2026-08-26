@@ -401,7 +401,7 @@ export const profile = {
   ],
 
   certifications: [
-    { name: 'KT AIVLE 9기 AI 개발자 교육', issuer: 'KT', date: '2026.04 ~', note: '교육 이수 중' },
+    { name: 'KT AIVLE 9기 AI 개발자 교육', issuer: 'KT', date: '2026.04 ~ 2026.09', note: '2026.09 수료 예정' },
     { name: '정보처리기사', issuer: '한국산업인력공단', date: '2025.06' },
     { name: '직업능력개발훈련교사 3급', issuer: '고용노동부', date: '2026.02' },
     { name: '파이썬 프로그래밍 활용능력 1급', issuer: '한국정보인재개발원', date: '2023.11' },
