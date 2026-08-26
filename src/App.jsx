@@ -27,6 +27,11 @@ function App() {
         <ProjectPage projectKey="ai-voice" />
       </div>
 
+      {/* Page 3: AIDE 교사 행정업무 지원 시스템 */}
+      <div className="print-page max-w-6xl mx-auto mb-8 print:mb-0 print:max-w-none shadow-lg print:shadow-none">
+        <ProjectPage projectKey="aide" />
+      </div>
+
       {/* Page 3: UWB 실내 위치추적 */}
       <div className="print-page max-w-6xl mx-auto mb-8 print:mb-0 print:max-w-none shadow-lg print:shadow-none">
         <ProjectPage projectKey="uwb" />
@@ -42,10 +47,10 @@ function App() {
         <ProjectPage projectKey="epts" />
       </div>
 
-      {/* Page 6: 위세아이텍 인턴십 */}
-      <div className="print-page max-w-6xl mx-auto mb-8 print:mb-0 print:max-w-none shadow-lg print:shadow-none">
+      {/* Page 6: 위세아이텍 인턴십 — 숨김(경력, 포폴 비노출). 내용은 삭제하지 않고 렌더만 제외 */}
+      {/* <div className="print-page max-w-6xl mx-auto mb-8 print:mb-0 print:max-w-none shadow-lg print:shadow-none">
         <ExperiencePage />
-      </div>
+      </div> */}
 
       <footer className="no-print py-8 text-center text-xs text-slate-400">
         © 2026 권오현 · Built with React

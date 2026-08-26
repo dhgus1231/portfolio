@@ -42,6 +42,16 @@ function ArchitectureFlow({ architecture }) {
       {architecture.note && (
         <p className="text-xs text-slate-500">{architecture.note}</p>
       )}
+      {architecture.link && (
+        <a
+          href={`${import.meta.env.BASE_URL}${architecture.link.href}`}
+          target="_blank"
+          rel="noreferrer"
+          className="text-xs font-semibold text-blue-600 hover:text-blue-700 hover:underline print:no-underline"
+        >
+          {architecture.link.label}
+        </a>
+      )}
     </div>
   );
 }
@@ -58,9 +68,10 @@ function TroubleCard({ item }) {
       <div className="flex flex-col gap-1.5 print:gap-1">
         {[
           { label: '문제', color: 'bg-red-400', text: item.problem },
+          { label: '원인', color: 'bg-yellow-400', text: item.cause },
           { label: '해결', color: 'bg-blue-400', text: item.solution },
           { label: '결과', color: 'bg-green-400', text: item.result },
-        ].map(({ label, color, text }) => (
+        ].filter(({ text }) => text).map(({ label, color, text }) => (
           <div key={label} className="flex gap-1.5">
             <div className="flex items-center gap-1 shrink-0 pt-0.5">
               <div className={`w-1.5 h-1.5 rounded-full shrink-0 ${color}`} />
@@ -146,8 +157,10 @@ export default function ProjectPage({ projectKey }) {
 
           {project.growth && (
             <div>
-              <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">배운점 & 향후 개선 방향</p>
-              <div className="grid grid-cols-2 gap-3 print:gap-2">
+              <p className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-2">
+                {project.growth.improvements ? '배운점 & 향후 개선 방향' : '배운점'}
+              </p>
+              <div className={`grid gap-3 print:gap-2 ${project.growth.improvements ? 'grid-cols-2' : 'grid-cols-1'}`}>
                 <div className="bg-green-50 border border-green-100 rounded-lg p-3 print:p-2.5">
                   <p className="text-xs font-semibold text-green-700 mb-1.5">배운점</p>
                   <ul className="flex flex-col gap-1">
@@ -158,16 +171,18 @@ export default function ProjectPage({ projectKey }) {
                     ))}
                   </ul>
                 </div>
-                <div className="bg-orange-50 border border-orange-100 rounded-lg p-3 print:p-2.5">
-                  <p className="text-xs font-semibold text-orange-700 mb-1.5">향후 개선 방향</p>
-                  <ul className="flex flex-col gap-1">
-                    {project.growth.improvements.map((imp, i) => (
-                      <li key={i} className="flex gap-1.5 text-xs text-slate-700 leading-snug">
-                        <span className="text-orange-400 shrink-0">·</span>{imp}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                {project.growth.improvements && (
+                  <div className="bg-orange-50 border border-orange-100 rounded-lg p-3 print:p-2.5">
+                    <p className="text-xs font-semibold text-orange-700 mb-1.5">향후 개선 방향</p>
+                    <ul className="flex flex-col gap-1">
+                      {project.growth.improvements.map((imp, i) => (
+                        <li key={i} className="flex gap-1.5 text-xs text-slate-700 leading-snug">
+                          <span className="text-orange-400 shrink-0">·</span>{imp}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                )}
               </div>
             </div>
           )}

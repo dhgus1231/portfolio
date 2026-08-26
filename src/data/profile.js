@@ -18,6 +18,7 @@ export const profile = {
     { category: 'Language', desc: '백엔드·알고리즘 구현', items: ['Python', 'Java'] },
     { category: 'AI / ML', desc: '파인튜닝·RAG·딥러닝 모델링·서빙', items: ['TensorFlow/Keras', 'Hugging Face Transformers', 'LoRA', 'vLLM', 'ChromaDB', 'RAG', 'Scikit-learn', 'OpenCV'] },
     { category: 'Backend / Infra', desc: 'API·실시간 파이프라인·인프라 구축', items: ['Spring Boot', 'gRPC', 'Asterisk', 'Kafka', 'ClickHouse', 'MySQL', 'Docker'] },
+    { category: 'AI Tools', desc: 'AI 페어프로그래밍으로 설계·구현·디버깅·문서화 가속', items: ['Claude Code'] },
     { category: 'Tools', desc: '협업·이슈 관리', items: ['Git / GitHub', 'Jira'] },
   ],
 
@@ -31,7 +32,7 @@ export const profile = {
       overview: '인바운드 전화 상담은 Asterisk → STT → LLM → TTS 파이프라인으로, 아웃바운드 상담은 RAG 기반 챗봇으로 구현한 2채널 AI 상담 시스템. Kanana 8B 온프레미스 서빙, It-os 납품.',
       architecture: {
         flows: [
-          { label: '인바운드 (음성)', nodes: ['Asterisk ARI', 'RTP 수신', 'CLOVA STT', 'Spring Boot\nCallFlow', 'Kanana 8B\n(vLLM)', 'ElevenLabs TTS'] },
+          { label: '인바운드 (음성)', nodes: ['Asterisk ARI', 'RTP 수신', 'Qwen3-ASR\n(로컬 STT)', 'Spring Boot\nCallFlow', 'Kanana 8B\n(vLLM)', 'ElevenLabs TTS'] },
           { label: '아웃바운드 (챗봇)', nodes: ['WebSocket\n수신', '슬롯 추출\n+ Router LLM', 'ChromaDB\nRAG 검색', 'Kanana 8B\n(vLLM)', '스트리밍\n응답'] },
         ],
         note: 'Redis 세션 관리 · LoRA 파인튜닝 · Docker Compose 인프라',
@@ -76,17 +77,72 @@ export const profile = {
       ],
       growth: {
         lessons: [
+          '모델 선정 기준의 전환 — 초기에는 벤치마크 성능으로 모델을 골랐으나, 전화망 통합에서 도메인 미스매치를 겪은 뒤로는 실제 배포 환경의 데이터 조건을 먼저 정의하고 그 기준으로 모델을 평가·개선하는 방식으로 바꿈',
           '온프레미스 LLM 서빙에서 latency·throughput 트레이드오프를 직접 경험',
           '규칙 기반 슬롯 추출과 LLM 의도 분류를 조합하는 하이브리드 NLU 설계 경험',
           '외부 의존 요소(장비·벤더) 리스크를 사전 식별하고 병렬 작업으로 대응하는 프로젝트 관리 습관 형성',
         ],
-        improvements: [
-          'vLLM 배치 추론 최적화로 동시 다중 통화 처리 성능 개선',
-          '슬롯 추출을 LLM 기반으로 전환해 복잡한 자연어 표현 처리 커버리지 확대',
-          '응답 품질 모니터링 시스템 추가 (상담 로그 기반 이상 탐지)',
+      },
+      tags: ['Spring Boot', 'Asterisk', 'FastAPI', 'WebSocket', 'vLLM', 'Kanana 8B', 'LoRA', 'RAG', 'ChromaDB', 'Redis', 'Qwen3-ASR', 'ElevenLabs', 'Docker'],
+      highlight: true,
+    },
+    {
+      key: 'aide',
+      title: 'AIDE — 교사 행정업무 지원 시스템',
+      subtitle: 'KT AIVLE 9기 빅프로젝트 · 한국교육과정평가원 대상 교육 행정 AI 서비스',
+      period: '2026.06 – 2026.08',
+      role: '조장 · 전체 아키텍처 설계 · 백엔드/AI/인프라 (7인)',
+      overview: '"교사에게 필요한 건 판단을 대신할 AI가 아니라 잡무에서 벗어날 시간"이라는 관점에서, 두 가지 설계 원칙을 세우고 아키텍처를 그 원칙에서 도출했다 — (1) AI는 정리·검색·초안까지, 판단·결재는 교사가 쥔다 (2) 판단이 필요한 지점만 모델이 맡고, 확정적인 제약은 규칙·솔버로 처리한다. 규정 검색·행정문서·학교폭력·시간표를 FE(React)·BE(Spring Boot)·AI(FastAPI 3종) 3계층으로 통합하고, 학생 실명은 외부 LLM에 닿지 않는 개인정보 경계를 코드로 구현.',
+      architecture: {
+        flows: [
+          { label: '요청 흐름', nodes: ['React', 'Apache\n게이트웨이', 'Spring Boot', 'FastAPI\n(챗봇·학폭·시간표)'] },
+          { label: '개인정보 경계', nodes: ['진술 원문', '비식별화\n(로컬 NER)', '마스킹본', '외부 LLM\n(NVIDIA)'] },
+        ],
+        note: 'PostgreSQL + pgvector(RAG) · Redis 작업 큐 · MinIO 파일 저장 · Oracle Cloud(Docker/K8s) — 학생 실명은 LLM 미경유',
+        link: { href: 'aide-1p.jpg', label: '📄 1P 서비스 정의서 (전체 아키텍처) 보기' },
+      },
+      problemSolving: {
+        problem: [
+          '교사의 행정 업무 시간이 OECD 최상위 — 규정 검색·문서 작성·시간표 편성·학교폭력 처리가 모두 수작업',
+          '학교폭력 사안은 미성년자 민감정보를 다뤄, AI 도입 시 개인정보 유출·판단 월권 리스크가 큼',
+        ],
+        impact: [
+          '수업 준비·학생 지도 시간 잠식',
+          '민감정보를 외부 LLM에 그대로 전달하면 유출 위험, AI가 판단까지 하면 법적 권한 침해',
+        ],
+        solution: [
+          'FE·BE·AI 3계층 분리 + AI 서비스 3종을 독립 컨테이너로 구성해 파트별 병렬 개발·장애 격리',
+          '규정 검색: RAG + 계층 가중 리랭크로 학칙이 법령보다 우선되지 않게 근거·출처와 함께 제공',
+          '학교폭력: 실명 원문은 LLM 미경유 — 비식별화 후 마스킹본만 전달, 판단 항목은 공란(전담기구 권한)',
+          '시간표: 제약 솔버로 하드 제약 100% 준수 + 자연어 결강 조율',
+        ],
+        result: [
+          '규정 검색·문서 생성·학교폭력 처리·시간표 편성을 하나의 시스템으로 통합',
+          '개인정보를 구조적으로 보호(원문 LLM 미경유)하면서 판단 권한은 교사에게 유지',
         ],
       },
-      tags: ['Spring Boot', 'Asterisk', 'FastAPI', 'WebSocket', 'vLLM', 'Kanana 8B', 'LoRA', 'RAG', 'ChromaDB', 'Redis', 'CLOVA STT', 'ElevenLabs', 'Docker'],
+      techRationale: [
+        { tech: 'AI 서비스 3종 분리 (FastAPI·Docker)', reason: '한 서버로 묶으면 한 파트 장애가 전체를 멈춤 → 챗봇·학폭·시간표를 독립 컨테이너로 나눠 병렬 개발·장애 격리·개별 배포 (아키텍처 설계)' },
+        { tech: 'JWT + 학교 스코프 인터셉터', reason: '학교별 데이터 격리가 필수 → 모든 API에 학교 범위를 강제하는 인터셉터를 둬 다른 학교 데이터 접근을 원천 차단' },
+        { tech: 'Oracle Cloud', reason: 'STT·NER를 로컬 CPU로 돌려 상시 GPU 인스턴스가 불필요함을 먼저 분석 → 그 조건에서 팀 예산에 맞는 벤더로 선정' },
+      ],
+      contribution: [
+        '조장으로서 7인 팀을 애자일로 운영 — 매일 아침 15분 스탠드업으로 진행·블로커 점검, 파트별 업무를 우선순위와 함께 정의해 Jira 티켓으로 분배·추적하며 스프린트·일정 관리',
+        '협업 문서 체계 수립 — 일일공유 템플릿·회의록·파트 간 인터페이스 문서 규격을 정비해 진행 상황 공유',
+        '전체 시스템 아키텍처 설계 (FE·BE·AI 3계층, AI 서비스 3종 독립 컨테이너 구성)',
+        '인증·권한 체계 설계·구현 (JWT 필터체인, 학교 스코프 강제 인터셉터, 역할 3종 분리)',
+        '학교폭력 도메인 백엔드 전 과정 구현 (사안 접수 → 법정 시한 관리 → 진술 → 교차검증 → 보고서·기안문 생성)',
+        '개인정보 처리 경계 설계 (실명 원문 LLM 미경유, 비식별화 연동, 실명 매핑 암호화)',
+        'AI 행정문서 생성 엔진 구현 (학교 고유 hwpx 양식 기반 자동 생성)',
+        '클라우드 인프라 전략 수립 (GPU 필요성 분석, 벤더 비교 후 Oracle Cloud 선정, K8s·CI/CD 파이프라인 설계)',
+      ],
+      growth: {
+        lessons: [
+          '좋은 아키텍처는 최신 기술 스택이 아니라 사용자의 실제 필요를 정확히 파악하고 거기에 맞춰 구조를 설계하는 데서 나온다는 것을 체감 — "AI로 다 할 수 있다"가 아니라 "교사에게 무엇이 필요한가"에서 출발해 판단과 자동화의 경계를 그음',
+          '좋은 설계만큼 중요한 것이 소통과 공유라는 것을, 7인 팀을 이끌며 다시 확인함. 일일공유 템플릿·데일리 스탠드업·파트별 우선순위 정리로 진행 상황과 막힌 지점을 계속 맞춰가는 것이 결국 협업 속도를 좌우한다는 것을 체감',
+        ],
+      },
+      tags: ['Spring Boot', 'FastAPI', 'React', 'PostgreSQL / pgvector', 'Redis', 'MinIO', 'Docker', 'Kubernetes', 'Oracle Cloud', 'RAG', 'CP-SAT', 'JWT'],
       highlight: true,
     },
     {
@@ -267,7 +323,7 @@ export const profile = {
     {
       key: 'wiseitech',
       company: '위세아이텍',
-      role: '인턴 (주임)',
+      role: '체험형 인턴 (주임)',
       department: 'DM사업부',
       period: '2025.06 – 2025.12 (6개월)',
       tasks: ['공공데이터 품질 진단', 'DB 기반 데이터 분석', '논리적 개선 방안 보고서 작성'],
