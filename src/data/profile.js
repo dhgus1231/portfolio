@@ -29,10 +29,10 @@ export const profile = {
       subtitle: '온프레미스 LLM 기반 · It-os 납품',
       period: '2025.12 – 2026.02',
       role: '팀장 (기여도 50%)',
-      overview: '인바운드 전화 상담은 Asterisk → STT → LLM → TTS 파이프라인으로, 아웃바운드 상담은 RAG 기반 챗봇으로 구현한 2채널 AI 상담 시스템. Kanana 8B 온프레미스 서빙, It-os 납품.',
+      overview: '아웃바운드 전화 상담은 Asterisk → STT → LLM → TTS 파이프라인으로, 인바운드 상담은 RAG 기반 챗봇으로 구현한 2채널 AI 상담 시스템. Kanana 8B 온프레미스 서빙, It-os 납품.',
       demo: { href: 'https://gigapang.com/chat', label: 'gigapang.com/chat' },
       screens: {
-        label: '아웃바운드 RAG 챗봇 — 고객사(기가팡) 실서비스 운영 화면',
+        label: '인바운드 RAG 챗봇 — 고객사(기가팡) 실서비스 운영 화면',
         note: '실제 서비스 URL: https://gigapang.com/chat · 고객 개인정보 영역은 마스킹 처리',
         shots: [
           {
@@ -49,26 +49,26 @@ export const profile = {
       },
       architecture: {
         flows: [
-          { label: '인바운드 (음성)', nodes: ['Asterisk ARI', 'RTP 수신', 'Qwen3-ASR\n(로컬 STT)', 'Spring Boot\nCallFlow', 'Kanana 8B\n(vLLM)', 'ElevenLabs TTS'] },
-          { label: '아웃바운드 (챗봇)', nodes: ['WebSocket\n수신', '슬롯 추출\n+ Router LLM', 'ChromaDB\nRAG 검색', 'Kanana 8B\n(vLLM)', '스트리밍\n응답'] },
+          { label: '아웃바운드 (음성)', nodes: ['Asterisk ARI', 'RTP 수신', 'Qwen3-ASR\n(로컬 STT)', 'Spring Boot\nCallFlow', 'Kanana 8B\n(vLLM)', 'ElevenLabs TTS'] },
+          { label: '인바운드 (챗봇)', nodes: ['WebSocket\n수신', '슬롯 추출\n+ Router LLM', 'ChromaDB\nRAG 검색', 'Kanana 8B\n(vLLM)', '스트리밍\n응답'] },
         ],
         note: 'Redis 세션 관리 · LoRA 파인튜닝 · Docker Compose 인프라',
       },
       problemSolving: {
         problem: [
-          '인바운드 전화 상담을 상담원이 직접 처리해야 해 운영 인력 의존도가 높았음',
-          '아웃바운드 요금제 상담 시 고객 조건(통신사·속도·TV)에 맞는 맞춤 안내 자동화 시스템 부재',
+          '아웃바운드 전화 상담을 상담원이 직접 처리해야 해 운영 인력 의존도가 높았음',
+          '인바운드 요금제 상담 시 고객 조건(통신사·속도·TV)에 맞는 맞춤 안내 자동화 시스템 부재',
         ],
         impact: [
           '상담원 부재 시간 응대 공백 → 고객 이탈 및 서비스 만족도 저하',
           '요금제 상담 품질이 상담원 역량에 의존 → 일관성 부족',
         ],
         solution: [
-          '인바운드: Asterisk ARI + Spring Boot CallFlow로 전화 수신 → STT → LLM → TTS 파이프라인 구축',
-          '인바운드: 온프레미스 Kanana 8B + vLLM 서빙으로 데이터 보안·낮은 latency·파인튜닝 자유도 동시 확보',
-          '아웃바운드: FastAPI WebSocket 기반 실시간 챗봇 서버 단독 구현',
-          '아웃바운드: 규칙 기반 슬롯 추출 + Router LLM 의도 분류 + ChromaDB RAG로 고객 조건 맞춤 요금제 검색',
-          '아웃바운드: Redis 세션 관리 + vLLM 스트리밍 응답으로 자연스러운 대화 흐름 구현',
+          '아웃바운드: Asterisk ARI + Spring Boot CallFlow로 오토콜 장비 연동 → STT → LLM → TTS 파이프라인 구축',
+          '아웃바운드: 온프레미스 Kanana 8B + vLLM 서빙으로 데이터 보안·낮은 latency·파인튜닝 자유도 동시 확보',
+          '인바운드: FastAPI WebSocket 기반 실시간 챗봇 서버 단독 구현',
+          '인바운드: 규칙 기반 슬롯 추출 + Router LLM 의도 분류 + ChromaDB RAG로 고객 조건 맞춤 요금제 검색',
+          '인바운드: Redis 세션 관리 + vLLM 스트리밍 응답으로 자연스러운 대화 흐름 구현',
         ],
         result: [
           '인바운드·아웃바운드 2채널 AI 상담 시스템 납품 완료 (It-os)',
@@ -88,7 +88,7 @@ export const profile = {
         'Spring Boot 기반 CallFlow 통합 서비스 구현 (세션 관리·STT 콜백·LLM·TTS 연동)',
         'Hugging Face Transformers + LoRA 방식으로 Kanana 8B 파인튜닝',
         'ChromaDB 기반 RAG 아키텍처 설계 및 구현',
-        'FastAPI WebSocket 기반 아웃바운드 챗봇 서버 단독 구현 (규칙 기반 슬롯 추출·Router LLM 의도 분류·RAG 요금제 검색·Redis 세션 관리·vLLM 스트리밍 응답)',
+        'FastAPI WebSocket 기반 인바운드 챗봇 서버 단독 구현 (규칙 기반 슬롯 추출·Router LLM 의도 분류·RAG 요금제 검색·Redis 세션 관리·vLLM 스트리밍 응답)',
         'Docker Compose로 전체 인프라 컨테이너화',
         '고객사 기술 협의 주도 및 요구사항 기술 스펙 전환',
       ],
@@ -415,6 +415,11 @@ export const profile = {
       period: '2020.03 – 2026.02',
       gpa: '3.71 / 4.5 (전공 3.92)',
       location: '충남',
+    },
+    {
+      school: 'DKE Lab',
+      degree: '학부연구생',
+      period: '2024.05 – 2024.10',
     },
   ],
 

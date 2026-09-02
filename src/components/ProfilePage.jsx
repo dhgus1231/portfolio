@@ -118,9 +118,15 @@ export default function ProfilePage() {
               {profile.education.map((edu) => (
                 <div key={edu.school} className="bg-slate-50 rounded-xl p-4 print:rounded-lg print:p-3 border border-slate-100">
                   <h3 className="font-bold text-slate-900 text-sm print:text-xs">{edu.school}</h3>
-                  <p className="text-xs text-blue-600 font-medium mt-0.5">{edu.major} · {edu.degree}</p>
-                  <p className="text-xs text-slate-500 mt-0.5">{edu.period} · {edu.location}</p>
-                  <p className="text-xs text-slate-600 mt-0.5">학점 <span className="font-semibold">{edu.gpa}</span></p>
+                  <p className="text-xs text-blue-600 font-medium mt-0.5">
+                    {[edu.major, edu.degree].filter(Boolean).join(' · ')}
+                  </p>
+                  <p className="text-xs text-slate-500 mt-0.5">
+                    {[edu.period, edu.location].filter(Boolean).join(' · ')}
+                  </p>
+                  {edu.gpa && (
+                    <p className="text-xs text-slate-600 mt-0.5">학점 <span className="font-semibold">{edu.gpa}</span></p>
+                  )}
                 </div>
               ))}
               <div className="bg-slate-50 rounded-xl p-4 print:rounded-lg print:p-3 border border-slate-100">
