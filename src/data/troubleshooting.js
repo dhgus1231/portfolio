@@ -100,6 +100,16 @@ export const troubleshooting = [
     result: '명세서 없이 오토콜 연동 완료. 실측 기반 RtpToneAnalyzer 구현으로 띵동·바이지톤 신호를 안정적으로 감지',
   },
   {
+    projectKey: 'ai-voice',
+    category: '기술',
+    project: 'AI 보이스 상담 시스템',
+    title: 'STT "환각(hallucination)" 현상 — 원인별로 좁혀가며 해결',
+    problem: '실시간 상담 STT 튜닝 중 모델이 실제로 말하지 않은 문장을 지어내거나 같은 말을 반복 생성하는 환각 증상이 심하게 발생했습니다.',
+    cause: '원인을 하나씩 좁혀본 결과 세 가지가 겹쳐 있었습니다 — ① 무음 구간인데도 텍스트를 만들어내는 세그먼트, ② 실시간 partial 인식에 이전 문맥(initial_prompt)을 계속 누적해서 넣을수록 환각이 심해지는 현상, ③ 디코딩 온도로 인한 무작위성.',
+    solution: '① no_speech_threshold·seg.no_speech_prob 값을 0.9로 완화해 무음 오인식 세그먼트를 필터링, ② initial_prompt를 최근 200자로만 잘라 넣도록 제한(너무 길게 넣으면 환각 가능), ③ temperature=0.0(결정적 디코딩)으로 고정, ④ 200ms 미만의 짧은 오디오는 STT 호출 자체를 건너뛰도록 처리.',
+    result: '환각 현상을 크게 줄여 실시간 상담 STT의 신뢰도를 확보. VAD로 발화 구간을 먼저 걸러내는 것만으로는 부족했고, STT 디코딩 파라미터까지 함께 튜닝해야 실사용 가능한 품질이 나온다는 것을 체감.',
+  },
+  {
     projectKey: 'wiseitech',
     category: '기술',
     project: '위세아이텍 인턴십',

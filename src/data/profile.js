@@ -17,6 +17,7 @@ export const profile = {
   skills: [
     { category: 'Language', desc: '백엔드·알고리즘 구현', items: ['Python', 'Java'] },
     { category: 'AI / ML', desc: '파인튜닝·RAG·딥러닝 모델링·서빙', items: ['TensorFlow/Keras', 'Hugging Face Transformers', 'LoRA', 'vLLM', 'ChromaDB', 'RAG', 'Scikit-learn', 'OpenCV'] },
+    { category: 'AI Agent', desc: '멀티노드·멀티에이전트 파이프라인 설계·구현', items: ['LangChain', 'LangGraph', 'LangSmith', 'Tavily API', 'Silero-VAD', 'Qwen3-ASR SFT'] },
     { category: 'Backend / Infra', desc: 'API·실시간 파이프라인·인프라 구축', items: ['Spring Boot', 'gRPC', 'Asterisk', 'Kafka', 'ClickHouse', 'MySQL', 'Docker'] },
     { category: 'AI Tools', desc: 'AI 페어프로그래밍으로 설계·구현·디버깅·문서화 가속', items: ['Claude Code'] },
     { category: 'Tools', desc: '협업·이슈 관리', items: ['Git / GitHub', 'Jira'] },
@@ -25,6 +26,7 @@ export const profile = {
   projects: [
     {
       key: 'ai-voice',
+      category: 'ai',
       title: 'AI 보이스 상담 시스템',
       subtitle: '온프레미스 LLM 기반 · It-os 납품',
       period: '2025.12 – 2026.02',
@@ -49,7 +51,7 @@ export const profile = {
       },
       architecture: {
         flows: [
-          { label: '아웃바운드 (음성)', nodes: ['Asterisk ARI', 'RTP 수신', 'Qwen3-ASR\n(로컬 STT)', 'Spring Boot\nCallFlow', 'Kanana 8B\n(vLLM)', 'ElevenLabs TTS'] },
+          { label: '아웃바운드 (음성)', nodes: ['Asterisk ARI', 'RTP 수신', 'Silero-VAD\n(발화 종료 감지)', 'Qwen3-ASR\n(로컬 STT)', 'Spring Boot\nCallFlow', 'Kanana 8B\n(vLLM)', 'ElevenLabs TTS'] },
           { label: '인바운드 (챗봇)', nodes: ['WebSocket\n수신', '슬롯 추출\n+ Router LLM', 'ChromaDB\nRAG 검색', 'Kanana 8B\n(vLLM)', '스트리밍\n응답'] },
         ],
         note: 'Redis 세션 관리 · LoRA 파인튜닝 · Docker Compose 인프라',
@@ -81,10 +83,13 @@ export const profile = {
         { tech: 'ChromaDB', reason: '경량 벡터 DB — 온프레미스 설치 용이, 메타데이터 필터 기반 요금제 검색 지원' },
         { tech: 'Redis', reason: '챗봇 세션 상태(슬롯·대화이력) 관리 — 인메모리 구조로 빠른 세션 조회·저장' },
         { tech: 'Docker Compose', reason: '전체 스택 컨테이너화 — 납품 환경 재현성 및 배포 일관성 확보' },
+        { tech: 'Silero-VAD', reason: '실시간 발화 종료 감지 — STT 호출 전 무음 구간을 걸러 불필요한 인식 호출을 줄이고 응답 지연 최소화' },
       ],
       contribution: [
         '전체 시스템 아키텍처 설계 (인바운드·아웃바운드 2채널 파이프라인 구조 정의)',
         '온프레미스 Linux 서버 환경 직접 구축 (GPU 서버 OS 설치·네트워크 설정·환경 구성)',
+        'Silero-VAD(VADIterator) 실시간 STT 파이프라인에 직접 통합 — threshold·min_silence_duration_ms(400ms)·speech_pad_ms(100ms) 파라미터 직접 튜닝, Silero 로드 실패 시 자체 에너지 기반 VAD 폴백까지 구현',
+        'Qwen3-ASR을 통신사 상담 도메인으로 SFT 파인튜닝 (TTS로 학습 데이터 자체 생성)',
         'Spring Boot 기반 CallFlow 통합 서비스 구현 (세션 관리·STT 콜백·LLM·TTS 연동)',
         'Hugging Face Transformers + LoRA 방식으로 Kanana 8B 파인튜닝',
         'ChromaDB 기반 RAG 아키텍처 설계 및 구현',
@@ -100,11 +105,12 @@ export const profile = {
           '외부 의존 요소(장비·벤더) 리스크를 사전 식별하고 병렬 작업으로 대응하는 프로젝트 관리 습관 형성',
         ],
       },
-      tags: ['Spring Boot', 'Asterisk', 'FastAPI', 'WebSocket', 'vLLM', 'Kanana 8B', 'LoRA', 'RAG', 'ChromaDB', 'Redis', 'Qwen3-ASR', 'ElevenLabs', 'Docker'],
+      tags: ['Spring Boot', 'Asterisk', 'FastAPI', 'WebSocket', 'vLLM', 'Kanana 8B', 'LoRA', 'RAG', 'ChromaDB', 'Redis', 'Qwen3-ASR', 'Silero-VAD', 'ElevenLabs', 'Docker'],
       highlight: true,
     },
     {
       key: 'aide',
+      category: 'ai',
       title: 'AIDE — 교사 행정업무 지원 시스템',
       subtitle: 'KT AIVLE 9기 빅프로젝트 · 한국교육과정평가원 대상 교육 행정 AI 서비스',
       period: '2026.06 – 2026.08',
@@ -190,6 +196,7 @@ export const profile = {
     },
     {
       key: 'uwb',
+      category: 'backend',
       title: 'UWB 기반 실내 위치추적 시스템',
       subtitle: '삼변측량 알고리즘 설계 · (주)메티스 납품',
       period: '2024.05 – 2024.09',
@@ -257,6 +264,7 @@ export const profile = {
     },
     {
       key: 'aivle-minip1',
+      category: 'ai',
       title: 'AI 기반 고객 만족도 예측 시스템',
       subtitle: 'KT AIVLE 9기 1차 미니프로젝트',
       period: '2026.04.14 – 2026.04.15',
@@ -308,7 +316,123 @@ export const profile = {
       highlight: false,
     },
     {
+      key: 'aivle-minip2',
+      category: 'ai',
+      title: 'AI 강사 Agent',
+      subtitle: 'KT AIVLE 9기 2차 미니프로젝트 · 교육용 AI Agent',
+      period: '2026 (2차 미니프로젝트)',
+      role: '조장 · State 관리자',
+      overview: 'PPT를 업로드하면 슬라이드를 분석해 강의 스크립트를 자동 생성하고, 페르소나별 TTS 음성으로 변환한 뒤 영상까지 합성하는 교육용 AI Agent. LangGraph 기반 12노드 파이프라인으로 설계.',
+      architecture: {
+        flows: [
+          { label: '슬라이드 → 스크립트', nodes: ['parse_all', 'gen_page', 'search\n(조건부)', 'script_assistant'] },
+          { label: '퀴즈 → 영상 합성', nodes: ['generate_quiz', 'tts', 'generate_video', 'acc_step\n(조건부 루프)'] },
+        ],
+        note: 'TypedDict(total=False) 기반 State 설계 · LangGraph 조건부 엣지 2곳 · Tavily 검색 ToolNode 연동',
+      },
+      problemSolving: {
+        problem: [
+          '12개 노드가 파이프라인 전체에서 서로 다른 데이터(슬라이드/스크립트/오디오/영상 등)를 주고받아야 해 노드 간 데이터 구조 불일치 발생',
+          '슬라이드 내용만으로는 강의 스크립트 생성에 필요한 배경지식이 부족',
+        ],
+        impact: [
+          '데이터 구조가 노드마다 다르면 파이프라인 확장·디버깅이 어려워짐',
+          '배경지식 부족 시 스크립트 품질 저하',
+        ],
+        solution: [
+          'TypedDict(total=False)로 State를 유연하게 설계해 각 노드가 필요한 필드만 채우도록 통일',
+          'need_tools 조건부 엣지로 도구 호출 필요 여부를 판단해 Tavily 검색(ToolNode) 연동',
+          'should_continue 조건부 엣지로 다음 슬라이드 루프 또는 최종 영상 합성(concat) 분기',
+        ],
+        result: [
+          'PPT 업로드 → 스크립트 생성 → 페르소나별 TTS → 영상 합성까지 전체 파이프라인 완성',
+          '퀴즈·설문 결과를 강사에게 리포트로 제공하는 피드백 루프 아이디어 제안',
+        ],
+      },
+      techRationale: [
+        { tech: 'LangGraph StateGraph', reason: '12개 노드의 순차·조건부 흐름을 하나의 State로 관리 — 멀티노드 파이프라인의 데이터 일관성 확보' },
+        { tech: 'Tavily API + ToolNode', reason: '슬라이드만으로 부족한 배경지식을 실시간 웹 검색으로 보강' },
+      ],
+      contribution: [
+        '조장 및 State 관리자로 TypedDict(total=False) 기반 State 클래스 직접 설계',
+        '12개 노드(parse_all→gen_page→search→[조건부]→extract_result→script_assistant→gen_script_ctx→generate_quiz→tts→generate_video→acc_step→[조건부]→concat) 파이프라인 구성',
+        '조건부 엣지 2곳(need_tools, should_continue) 직접 구현',
+        'langchain_tavily.TavilySearch를 ToolNode로 그래프에 연결',
+        '퀴즈·설문 결과 리포트 → 프롬프트 피드백 루프 아이디어 제안',
+      ],
+      growth: {
+        lessons: [
+          'LangGraph State 설계로 복잡한 멀티노드 파이프라인의 데이터 흐름을 체계적으로 관리하는 방법 체득',
+          '조장으로서 역할 분배 및 방향 조율 경험',
+        ],
+        improvements: [
+          '피드백 루프(퀴즈 결과 → 프롬프트 반영)를 실제로 구현해 개인화 강의 스크립트로 발전',
+        ],
+      },
+      tags: ['Python', 'LangGraph', 'LangChain', 'Tavily API', 'OpenAI API', 'python-pptx', 'Gradio', 'RDBMS'],
+      highlight: false,
+    },
+    {
+      key: 'aivle-minip3',
+      category: 'ai',
+      title: '상품 리뷰 분석 Agent 시스템',
+      subtitle: 'KT AIVLE 9기 3차 미니프로젝트 · LangGraph Supervisor 멀티에이전트',
+      period: '2026.05.11 – 2026.05.13',
+      role: '타임키퍼 · DB 관리 · 배치 처리 · 대시보드',
+      overview: '상품 리뷰를 LangGraph 기반 Supervisor 멀티에이전트로 자동 분석. 리뷰별 신뢰도 가중치(-1~1)를 LLM으로 산출해 무성의한 리뷰의 영향력을 가중평균으로 낮추는 방식으로 감성분석 편향 문제를 해결.',
+      architecture: {
+        flows: [
+          { label: '멀티에이전트 분석', nodes: ['리뷰 수집', 'supervisor_node\n(라우팅)', 'analyzer_node\n(평가추출)', 'critic_node\n(검증)', 'sincerity_weight\n(신뢰도 산출)'] },
+          { label: '저장 · 시각화', nodes: ['DB 저장', 'Streamlit\n대시보드'] },
+        ],
+        note: '4개 노드 모두 gpt-4.1-mini 사용 · SQLite 배치 파이프라인 · LangSmith 트레이스 모니터링',
+      },
+      problemSolving: {
+        problem: [
+          '기존 감성분석은 모든 리뷰를 동등하게 취급해 무성의하거나 신뢰도 낮은 리뷰도 결과에 동일한 영향을 미치는 편향 문제',
+        ],
+        impact: [
+          '왜곡된 감성분석 결과로 잘못된 제품 개선 인사이트 도출 위험',
+        ],
+        solution: [
+          'analyzer_node가 평가관점 5종(보습/가격/향/배송/유지력)과 감정(±1)을 JSON으로 추출',
+          'critic_node가 근거문장 타당성을 검증해 부적합 시 analyzer로 재라우팅',
+          'sincerity_weight_node가 리뷰 진정성을 -1~1로 산출해 가중평균에 반영',
+          '미처리 리뷰 조회 → LangGraph 실행 → 결과 저장 배치 파이프라인 직접 구현',
+        ],
+        result: [
+          '무성의한 리뷰의 영향력을 수학적으로 낮춘 신뢰도 가중 감성분석 파이프라인 완성',
+          'Streamlit 대시보드로 품질점수 분포·시계열 감성추이 시각화',
+        ],
+      },
+      techRationale: [
+        { tech: 'LangGraph Supervisor 패턴', reason: 'analyzer/critic/sincerity 노드 간 재시도·라우팅을 supervisor가 중앙에서 관리 — 검증 실패 시 자동 재라우팅 구조' },
+        { tech: 'SQLite + 배치 파이프라인', reason: '미처리 리뷰만 골라 Agent 그래프를 실행하는 구조로 중복 처리 방지 및 운영 효율화' },
+      ],
+      contribution: [
+        'SQLite reviews 테이블 스키마 설계 및 컬럼 추가',
+        '"미처리 리뷰 조회 → LangGraph Agent 실행 → 결과 저장" 배치 처리 파이프라인 직접 구현',
+        '품질점수 분포·시계열 감성추이 등 Streamlit 대시보드 인사이트 아이디어 제안 및 구현',
+        'LangSmith로 Agent 실행 트레이스 모니터링',
+        'Analyzer/Critic/Supervisor 멀티에이전트 아키텍처 설계 논의에 참여 (개별 노드 구현은 팀 공동, 본인은 DB·배치·대시보드 전담)',
+        '타임키퍼로서 논의 장기화 시 시간 기준 의사결정 유도, 3일 일정 내 완료',
+      ],
+      growth: {
+        lessons: [
+          'LLM 기반 신뢰도 가중치 설계 및 가중평균 아키텍처 구현 경험',
+          'SQLite + 배치 처리로 DB 운영 효율화 경험',
+          '타임키퍼 역할을 통한 일정관리·팀 조율 경험',
+        ],
+        improvements: [
+          '신뢰도 가중치 산출 로직을 규칙 기반 검증과 병행해 편향을 추가로 줄이는 방향 검토',
+        ],
+      },
+      tags: ['Python', 'LangGraph', 'LangChain', 'LangSmith', 'SQLite', 'Streamlit', 'OpenAI API'],
+      highlight: false,
+    },
+    {
       key: 'epts',
+      category: 'backend',
       title: '풋살 선수 분석 플랫폼 (EPTS)',
       subtitle: '창업동아리 Alphaca · 졸업설계 연계',
       period: '2025.02 – 2025.06',
